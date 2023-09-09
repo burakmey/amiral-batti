@@ -1,0 +1,19 @@
+.arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.5s;
+}
+.arrow-primary {
+  font-size: 35px;
+  border-radius: 15px;
+}
+.arrow-secondary {
+  font-size: 20px;
+  border-radius: 10px;
+}
+.arrow-on-mouse {
+  background-color: royalblue;
+  transition: 0.5s;
+}
