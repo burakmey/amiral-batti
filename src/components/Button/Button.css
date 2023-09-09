@@ -1,8 +1,7 @@
 .button {
   display: flex;
-  align-items: center;
+  align-self: center;
   cursor: pointer;
-  width: fit-content;
   transition: 0.5s;
 }
 .button-on-mouse {

@@ -7,11 +7,11 @@ import "../../styles.css";
 function Menu(props) {
   return (
     <div className="menu">
-      <Arrow className={"arrow-primary"}>
+      <Arrow className={props.arrowClassName}>
         <IoIosArrowUp />
       </Arrow>
       {props.children}
-      <Arrow className={"arrow-primary"}>
+      <Arrow className={props.arrowClassName}>
         <IoIosArrowDown />
       </Arrow>
     </div>

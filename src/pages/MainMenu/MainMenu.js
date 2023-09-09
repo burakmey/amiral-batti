@@ -8,7 +8,7 @@ function MainMenu() {
   return (
     <div>
       <Title />
-      <Menu>
+      <Menu arrowClassName={"arrow-primary"}>
         <Button name={"Play"} className={"main-button"} />
         <Button name={"Settings"} className={"sub-button"} />
         <Button name={"Rules"} className={"sub-button"} />
