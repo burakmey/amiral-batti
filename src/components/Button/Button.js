@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Button.css";
-import "../styles.css";
+import "../../styles.css";
 
 function Button(props) {
   console.log(`Button: ${props.name} rendered!`);
