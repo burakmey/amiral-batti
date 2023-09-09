@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.5s;
+}
+.button-on-mouse {
+  background-color: royalblue;
+  transition: 0.5s;
+}
+.main-button {
+  padding: 10px 60px;
+  font-size: 50px;
+  border-radius: 50px;
+}
+.sub-button {
+  padding: 10px 30px;
+  font-size: 30px;
+  border-radius: 40px;
+}

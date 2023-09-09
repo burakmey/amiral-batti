@@ -1,0 +1,10 @@
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  text-align: center;
+}
+.title-text {
+  font-size: 70px;
+  background-color: red;
+}
