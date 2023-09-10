@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Player from "./Player";
 import Button from "../Button/Button";
 
@@ -10,6 +10,11 @@ function SelectPlayers() {
 
   const [buttonName, setButtonName] = useState("Set Players");
   const [buttonClassName, setButtonClassName] = useState("main-button");
+
+  useEffect(() => {
+    return () => console.log("SelectPlayers unmounted!");
+  }, []);
+
   const onClick = () => {
     if (buttonName === "Start") {
       setButtonName(mainButtonName);

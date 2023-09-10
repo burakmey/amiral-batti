@@ -1,4 +1,4 @@
-import { useState, useRef, memo } from "react";
+import { useState, useRef, memo, useEffect } from "react";
 import Menu from "../Menu/Menu";
 import "./SelectPlayers.css";
 import "../../styles.css";
@@ -12,6 +12,10 @@ function Player(props) {
   const [inputClassName, setInputClassName] = useState("name-input");
   const [nameClassName, setnameClassName] = useState("player-name");
   const [isPlayer, setIsPlayer] = useState(true);
+
+  useEffect(() => {
+    return () => console.log("Player unmounted!");
+  }, []);
 
   const arrowUpClick = () => {
     setIsPlayer(false);

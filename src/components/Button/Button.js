@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Button.css";
 import "../../styles.css";
 
@@ -19,7 +19,7 @@ function Button(props) {
       className={className}
       onMouseEnter={() => updateStyle(true)}
       onMouseLeave={() => updateStyle(false)}
-      onClick={() => props.onClick()}
+      onClick={() => props.onClick(props.name)}
     >
       {props.name}
     </div>
