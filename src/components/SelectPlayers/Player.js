@@ -3,12 +3,23 @@ import Menu from "../Menu/Menu";
 import "./SelectPlayers.css";
 import "../../styles.css";
 
+const labelName = ["Player", "Computer"];
+
 function Player(props) {
   console.log("Player rendered!");
 
   const inputRef = useRef("");
   const [inputClassName, setInputClassName] = useState("name-input");
   const [nameClassName, setnameClassName] = useState("player-name");
+  const [isPlayer, setIsPlayer] = useState(true);
+
+  const arrowUpClick = () => {
+    setIsPlayer(false);
+  };
+
+  const arrowDownClick = () => {
+    setIsPlayer(true);
+  };
 
   const updateStyle = (onFocus) => {
     if (onFocus || inputRef.current.length !== 0) {
@@ -26,7 +37,11 @@ function Player(props) {
   };
   return (
     <div className="player">
-      <Menu arrowClassName={"arrow-secondary"}>
+      <Menu
+        arrowClassName={"arrow-secondary"}
+        arrowUpClick={arrowUpClick}
+        arrowDownClick={arrowDownClick}
+      >
         <div>
           <input
             className={inputClassName}
@@ -35,11 +50,13 @@ function Player(props) {
             onBlur={() => updateStyle(false)}
             maxLength={20}
           />
-          <span className={nameClassName}>{props.name}</span>
+          <span className={nameClassName}>
+            {isPlayer ? labelName[0] : labelName[1]}
+          </span>
         </div>
       </Menu>
     </div>
   );
 }
 
-export default Player;
+export default memo(Player);

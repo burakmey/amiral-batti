@@ -18,7 +18,7 @@ function Arrow(props) {
       className={className}
       onMouseEnter={() => updateStyle(true)}
       onMouseLeave={() => updateStyle(false)}
-      onClick={() => console.log("Arrow clicked.")}
+      onClick={() => props.onClick()}
     >
       {props.children}
     </div>
