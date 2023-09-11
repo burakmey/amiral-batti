@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MainMenu from "./pages/MainMenu";
 import PlayMenu from "./pages/PlayMenu";
+import Board from "./components/Board/Board";
 import "./App.css";
 
 function App() {
@@ -23,8 +24,9 @@ function App() {
   return (
     <div className="App">
       <div>
-        {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
-        {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
+        {/* {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
+        {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null} */}
+        <Board />
       </div>
     </div>
   );

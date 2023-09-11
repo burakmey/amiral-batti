@@ -1,0 +1,26 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-items: center;
+  width: fit-content;
+  height: fit-content;
+  grid-gap: 4px;
+  background-color: rgb(55, 55, 245);
+  border: 4px solid rgb(55, 55, 245);
+}
+.cell {
+  display: flex;
+  background-color: rgb(24, 105, 197);
+  color: rgba(0, 0, 0, 0.521);
+  font-size: 30px;
+  padding: 5px;
+}
+.cell-on-mouse {
+  background-color: orange;
+  transition: 0.5s;
+}
+.cell-hit {
+  background-color: red;
+  transition: 1s;
+}

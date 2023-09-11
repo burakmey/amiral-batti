@@ -13,14 +13,20 @@ function PlayMenu(props) {
   }, []);
 
   const onClick = (buttonName) => {
-    props.setPage("MainMenu");
+    switch (buttonName) {
+      case "Back to Main Menu":
+        props.setPage("MainMenu");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <div>
       <Title />
       <Menu arrowClassName={"arrow-primary"}>
-        <SelectPlayers />
+        <SelectPlayers setPage={props.setPage} />
         <Button
           name={"Back to Main Menu"}
           className={"sub-button"}

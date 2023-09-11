@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Player from "./Player";
 import Button from "../Button/Button";
 
-const mainButtonName = "Set Players";
+//const mainButtonName = "Set Players";
 const subButtonName = "Start";
 
-function SelectPlayers() {
+function SelectPlayers(props) {
   console.log("SelectPlayers rendered!");
 
   const [buttonName, setButtonName] = useState("Set Players");
@@ -15,13 +15,17 @@ function SelectPlayers() {
     return () => console.log("SelectPlayers unmounted!");
   }, []);
 
-  const onClick = () => {
-    if (buttonName === "Start") {
-      setButtonName(mainButtonName);
-      setButtonClassName("main-button");
-    } else {
-      setButtonClassName("sub-button");
-      setButtonName(subButtonName);
+  const onClick = (buttonName) => {
+    switch (buttonName) {
+      case "Set Players":
+        setButtonClassName("sub-button");
+        setButtonName(subButtonName);
+        break;
+      case "Start":
+        props.setPage("MainMenu");
+        break;
+      default:
+        break;
     }
   };
 
