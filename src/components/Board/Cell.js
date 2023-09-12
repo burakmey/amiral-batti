@@ -7,8 +7,13 @@ import "../../styles.css";
 function Cell(props, ref) {
   useImperativeHandle(ref, () => {
     return {
-      iconSet: () => {
+      setShip: () => {
         setIcon(<RiShipLine />);
+        updateStyle(true);
+      },
+      setWave: () => {
+        setIcon(<LuWaves />);
+        updateStyle(false);
       },
     };
   });
