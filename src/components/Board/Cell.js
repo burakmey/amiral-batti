@@ -5,6 +5,7 @@ import "./Board.css";
 import "../../styles.css";
 
 function Cell(props, ref) {
+  console.log("Cell rendered!");
   useImperativeHandle(ref, () => {
     return {
       setShip: () => {
@@ -17,7 +18,6 @@ function Cell(props, ref) {
       },
     };
   });
-  console.log("Cell rendered!");
 
   const [icon, setIcon] = useState(<LuWaves />);
   const [isHit, setIsHit] = useState(false);
@@ -29,12 +29,10 @@ function Cell(props, ref) {
 
   const onMouseEnter = () => {
     props.onMouseEnter(props.id);
-    updateStyle(true);
   };
 
   const onMouseLeave = () => {
     props.onMouseLeave(props.id);
-    updateStyle(false);
   };
 
   const onClick = () => {
@@ -48,7 +46,7 @@ function Cell(props, ref) {
       className={className}
       onMouseEnter={!isHit ? onMouseEnter : null}
       onMouseLeave={!isHit ? onMouseLeave : null}
-      onClick={!isHit ? onClick : null}
+      //onClick={!isHit ? onClick : null}
     >
       {icon}
     </div>

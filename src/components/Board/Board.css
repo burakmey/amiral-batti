@@ -18,7 +18,7 @@
 }
 .cell-on-mouse {
   background-color: orange;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 .cell-hit {
   background-color: red;

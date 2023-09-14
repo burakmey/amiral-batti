@@ -8,34 +8,44 @@ function Board() {
   console.log("Board rendered!");
 
   const cellRefs = useRef([]);
+  const indexRef = useRef(-1);
   const fleets = [2, 3, 3, 4, 5];
-  const [fleet, setFleet] = useState(fleets[4]);
-  const [rotate, setRotate] = useState(true); //true = horizontal, false = vertical;
+  const [fleet, setFleet] = useState(fleets[2]);
+  const [rotate, setRotate] = useState(false); //true = horizontal, false = vertical;
+  let bool = true;
 
   const onClick = (cellKey) => {
     console.log(cellKey);
   };
 
   const onMouseEnter = (cellKey) => {
-    if (rotate) {
-      cellKey = setHorizontalPlacement(cellKey);
-    } else {
-      cellKey = setVerticalPlacement(cellKey);
+    if (bool) {
+      if (rotate) {
+        indexRef.current = setHorizontalPlacement(cellKey);
+        for (let i = 0; i < fleet; i++) {
+          cellRefs.current[indexRef.current + i].setShip();
+        }
+      } else {
+        indexRef.current = setVerticalPlacement(cellKey);
+        for (let i = 0; i < fleet; i++) {
+          cellRefs.current[indexRef.current + i * 10].setShip();
+        }
+      }
     }
-    for (let i = 0; i < fleet; i++) {
-      cellRefs.current[cellKey + i].setShip();
-    }
+    bool = false;
   };
 
   const onMouseLeave = (cellKey) => {
     if (rotate) {
-      cellKey = setHorizontalPlacement(cellKey);
+      for (let i = 0; i < fleet; i++) {
+        cellRefs.current[indexRef.current + i].setWave();
+      }
     } else {
-      cellKey = setVerticalPlacement(cellKey);
+      for (let i = 0; i < fleet; i++) {
+        cellRefs.current[indexRef.current + i * 10].setWave();
+      }
     }
-    for (let i = 0; i < fleet; i++) {
-      cellRefs.current[cellKey + i].setWave();
-    }
+    bool = true;
   };
 
   const setHorizontalPlacement = (cellKey) => {
@@ -43,7 +53,6 @@ function Board() {
     const y = cellKey - x;
     if (x + fleet - 1 > 9) {
       cellKey = y + 10 - fleet;
-      console.log(cellKey);
     }
     return cellKey;
   };
@@ -51,6 +60,9 @@ function Board() {
   const setVerticalPlacement = (cellKey) => {
     const x = cellKey % 10;
     const y = cellKey - x;
+    if (cellKey + (fleet - 1) * 10 > 99) {
+      cellKey = x + (10 - fleet) * 10;
+    }
     return cellKey;
   };
 
