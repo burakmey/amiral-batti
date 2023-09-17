@@ -7,18 +7,31 @@
   width: fit-content;
   gap: 10px;
   background-color: bisque;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 5px;
 }
 .fleet {
   display: flex;
-  flex-direction: column;
   font-size: var(--fleet-size);
   align-items: center;
-  /* height: 60px;
-  width: 60px; */
-}
-.rotate {
-  display: flex;
   align-self: center;
+}
+.fleet-horizantal {
+  flex-direction: row;
+}
+.fleet-vertical {
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.fleets {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  gap: 20px;
 }

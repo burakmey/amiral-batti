@@ -1,4 +1,9 @@
-.place-ship-page {
-  display: flex;
-  flex-direction: row;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  margin: 0 auto;
+  gap: 200px;
 }

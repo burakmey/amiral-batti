@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Title from "../components/Title/Title";
 import Board from "../components/Board/Board";
 import "./Pages.css";
-import SelectFleet from "../components/SelectFleet/SelectFleet";
+import Fleets from "../components/SelectFleet/Fleets";
 
 function PlaceShipPage() {
   console.log("PlaceShipPage rendered!");
@@ -12,10 +12,10 @@ function PlaceShipPage() {
   }, []);
   return (
     <div>
-      {/* <Title /> */}
-      <div className="place-ship-page">
+      <Title />
+      <div className="grid">
         <Board />
-        <SelectFleet />
+        <Fleets />
       </div>
     </div>
   );
