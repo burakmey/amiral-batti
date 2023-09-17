@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { RiShipLine } from "react-icons/ri";
 import "./SelectFleet.css";
 import "../../styles.css";
+import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import Button from "../Button/Button";
 
 const fleetSize = getComputedStyle(document.documentElement).getPropertyValue(
@@ -10,16 +11,32 @@ const fleetSize = getComputedStyle(document.documentElement).getPropertyValue(
 
 function SelectFleet(props) {
   console.log("SelectFleet rendered!");
+
   const [className, setClassName] = useState("fleet");
   const isHorizontal = useRef(true);
+  const { fleetRef, isHorizontalRef } = usePlaceShipContext();
 
-  const onClick = () => {
-    console.log("onClick");
-    isHorizontal.current = !isHorizontal.current;
-    setClassName(
-      `fleet ${isHorizontal.current ? "fleet-horizantal" : "fleet-vertical"}`
-    );
-  };
+  const onClick = useCallback(
+    (buttonName) => {
+      switch (buttonName) {
+        case "Rotate":
+          isHorizontal.current = !isHorizontal.current;
+          setClassName(
+            `fleet ${
+              isHorizontal.current ? "fleet-horizantal" : "fleet-vertical"
+            }`
+          );
+          break;
+        case "Select":
+          fleetRef.current = props.shipCount;
+          isHorizontalRef.current = isHorizontal.current;
+          break;
+        default:
+          break;
+      }
+    },
+    [fleetRef, isHorizontalRef, props]
+  );
 
   return (
     <div className="select-fleet">

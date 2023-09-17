@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./Button.css";
 import "../../styles.css";
 
@@ -26,4 +26,4 @@ function Button(props) {
   );
 }
 
-export default Button;
+export default memo(Button);

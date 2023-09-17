@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Cell from "./Cell";
+import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import "./Board.css";
 import "../../styles.css";
 
@@ -11,13 +12,13 @@ function Board() {
   let fleetOnMouse = new Array();
   let placedFleets = new Array();
   let unsuitableLocations = new Array();
-  const fleetSizes = [2, 3, 3, 4, 5];
-  const [fleet, setFleet] = useState(fleetSizes[2]);
-  const [isHorizontal, setIsHorizontal] = useState(false); //true = horizontal, false = vertical;
+  const { fleetRef, isHorizontalRef } = usePlaceShipContext(); // true = horizontal, false = vertical;
   let allowMouseEnter = true;
 
+  useState(() => {});
+
   const onClick = () => {
-    if (isHorizontal) {
+    if (isHorizontalRef.current) {
     } else {
       if (isSuitable()) {
         addToUnsuitable();
@@ -44,7 +45,7 @@ function Board() {
   const addToUnsuitable = () => {
     let x = (fleetOnMouse[0] % 10) - 1;
     let y = fleetOnMouse[0] - 10 - 1 - x;
-    if (isHorizontal) {
+    if (isHorizontalRef.current) {
       //horizantal
     } else {
       let countY = 2;
@@ -74,7 +75,7 @@ function Board() {
 
   const onMouseEnter = (cellKey) => {
     if (allowMouseEnter) {
-      if (isHorizontal) {
+      if (isHorizontalRef.current) {
       } else {
         setVerticalPlacement(cellKey);
         for (let i = 0; i < fleetOnMouse.length; i++) {
@@ -87,7 +88,7 @@ function Board() {
   };
 
   const onMouseLeave = () => {
-    if (isHorizontal) {
+    if (isHorizontalRef.current) {
     } else {
       for (let i = 0; i < fleetOnMouse.length; i++) {
         const index = fleetOnMouse[i];
@@ -100,11 +101,11 @@ function Board() {
   const setHorizontalPlacement = (cellKey) => {
     const x = cellKey % 10;
     const y = cellKey - x;
-    if (x + fleet - 1 > 9) {
-      cellKey = y + 10 - fleet;
+    if (x + fleetRef.current - 1 > 9) {
+      cellKey = y + 10 - fleetRef.current;
     }
     let location = new Array();
-    for (let i = 0; i < fleet; i++) {
+    for (let i = 0; i < fleetRef.current; i++) {
       location.push(cellKey + i);
     }
   };
@@ -112,10 +113,10 @@ function Board() {
   const setVerticalPlacement = (cellKey) => {
     fleetOnMouse = new Array();
     const x = cellKey % 10;
-    if (cellKey + (fleet - 1) * 10 > 99) {
-      cellKey = x + (10 - fleet) * 10;
+    if (cellKey + (fleetRef.current - 1) * 10 > 99) {
+      cellKey = x + (10 - fleetRef.current) * 10;
     }
-    for (let i = 0; i < fleet; i++) {
+    for (let i = 0; i < fleetRef.current; i++) {
       const index = cellKey + i * 10;
       if (unsuitableLocations.includes(index)) {
         console.log("unsuitable");

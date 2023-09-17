@@ -3,7 +3,7 @@ import SelectFleet from "./SelectFleet";
 import "./SelectFleet.css";
 import "../../styles.css";
 
-function Fleets() {
+function Fleets(props) {
   console.log("SelectFleet rendered!");
   return (
     <div className="fleets">
