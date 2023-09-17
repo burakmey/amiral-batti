@@ -16,11 +16,11 @@
   font-size: 30px;
   padding: 5px;
 }
-.cell-on-mouse {
+.suitable-fleet {
   background-color: orange;
-  /* transition: 0.5s; */
+  transition: 0.5s;
 }
-.cell-hit {
-  background-color: red;
+.placed-fleet {
+  background-color: rgb(13, 102, 129);
   transition: 1s;
 }

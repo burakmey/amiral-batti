@@ -1,4 +1,4 @@
-import { forwardRef, memo, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { RiShipLine } from "react-icons/ri";
 import { LuWaves } from "react-icons/lu";
 import "./Board.css";
@@ -6,25 +6,39 @@ import "../../styles.css";
 
 function Cell(props, ref) {
   console.log("Cell rendered!");
-  useImperativeHandle(ref, () => {
-    return {
-      setShip: () => {
-        setIcon(<RiShipLine />);
-        updateStyle(true);
-      },
-      setWave: () => {
-        setIcon(<LuWaves />);
-        updateStyle(false);
-      },
-    };
-  });
-
   const [icon, setIcon] = useState(<LuWaves />);
   const [isHit, setIsHit] = useState(false);
   const [className, setClassName] = useState("cell");
+  let bool = true;
 
-  const updateStyle = (isOnMouse) => {
-    setClassName(`cell ${isOnMouse ? "cell-on-mouse" : ""}`);
+  useImperativeHandle(ref, () => ({
+    setShip: setShip,
+    setWave: setWave,
+    setHit: setHit,
+  }));
+
+  const setShip = () => {
+    if (bool) {
+      setIcon(<RiShipLine />);
+      updateClassName("suitable-fleet");
+    }
+  };
+
+  const setWave = () => {
+    if (bool) {
+      setIcon(<LuWaves />);
+      updateClassName("");
+    }
+  };
+
+  const setHit = () => {
+    bool = false;
+    setIsHit(true);
+    updateClassName("placed-fleet");
+  };
+
+  const updateClassName = (className) => {
+    setClassName(`cell ${className}`);
   };
 
   const onMouseEnter = () => {
@@ -32,13 +46,11 @@ function Cell(props, ref) {
   };
 
   const onMouseLeave = () => {
-    props.onMouseLeave(props.id);
+    props.onMouseLeave();
   };
 
   const onClick = () => {
-    props.onClick(props.id);
-    setClassName("cell cell-hit");
-    setIsHit(true);
+    props.onClick();
   };
 
   return (
@@ -46,11 +58,11 @@ function Cell(props, ref) {
       className={className}
       onMouseEnter={!isHit ? onMouseEnter : null}
       onMouseLeave={!isHit ? onMouseLeave : null}
-      //onClick={!isHit ? onClick : null}
+      onClick={!isHit ? onClick : null}
     >
       {icon}
     </div>
   );
 }
 
-export default memo(forwardRef(Cell));
+export default forwardRef(Cell);

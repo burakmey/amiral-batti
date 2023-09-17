@@ -1,0 +1,4 @@
+.place-ship-page {
+  display: flex;
+  flex-direction: row;
+}
