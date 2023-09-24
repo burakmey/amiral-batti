@@ -1,37 +1,31 @@
 :root {
   --fleet-size: 20px;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .select-fleet {
   display: flex;
-  height: fit-content;
-  width: fit-content;
   gap: 10px;
   background-color: bisque;
   border-radius: 30px;
-  padding: 5px;
+  padding: 15px;
+  flex-direction: column;
 }
 .fleet {
   display: flex;
   font-size: var(--fleet-size);
-  align-items: center;
+  gap: 10px;
   align-self: center;
-}
-.fleet-horizantal {
-  flex-direction: row;
-}
-.fleet-vertical {
-  flex-direction: column;
 }
 .buttons {
   display: flex;
-  flex-direction: column;
   align-self: center;
 }
 .fleets {
   display: flex;
   flex-direction: column;
-  height: fit-content;
-  width: fit-content;
-  align-items: center;
   gap: 20px;
 }

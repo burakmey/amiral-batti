@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Title from "../components/Title/Title";
-import Board from "../components/Board/Board";
+import BoardPlacement from "../components/Board/BoardPlacement";
 import "./Pages.css";
 import Fleets from "../components/SelectFleet/Fleets";
 import { PlaceShipProvider } from "../context/PlaceShipContext";
@@ -17,7 +17,7 @@ function PlaceShipPage() {
       <div>
         <Title />
         <div className="grid">
-          <Board />
+          <BoardPlacement />
           <Fleets />
         </div>
       </div>

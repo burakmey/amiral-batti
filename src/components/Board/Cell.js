@@ -2,43 +2,45 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { RiShipLine } from "react-icons/ri";
 import { LuWaves } from "react-icons/lu";
 import "./Board.css";
-import "../../styles.css";
 
 function Cell(props, ref) {
   console.log("Cell rendered!");
   const [icon, setIcon] = useState(<LuWaves />);
   const [isHit, setIsHit] = useState(false);
-  const [className, setClassName] = useState("cell");
+  const [className, setClassName] = useState(props.className);
   let bool = true;
 
   useImperativeHandle(ref, () => ({
     setShip: setShip,
     setWave: setWave,
     setHit: setHit,
+    setUnHit: setUnHit,
   }));
 
   const setShip = () => {
     if (bool) {
       setIcon(<RiShipLine />);
-      updateClassName("suitable-fleet");
+      setClassName(`${props.className} suitable-fleet`);
     }
   };
 
   const setWave = () => {
     if (bool) {
       setIcon(<LuWaves />);
-      updateClassName("");
+      setClassName(`${props.className}`);
     }
   };
 
   const setHit = () => {
     bool = false;
     setIsHit(true);
-    updateClassName("placed-fleet");
+    setClassName(`${props.className} placed-fleet`);
   };
 
-  const updateClassName = (className) => {
-    setClassName(`cell ${className}`);
+  const setUnHit = () => {
+    bool = true;
+    setIsHit(false);
+    setWave();
   };
 
   const onMouseEnter = () => {
@@ -46,11 +48,11 @@ function Cell(props, ref) {
   };
 
   const onMouseLeave = () => {
-    props.onMouseLeave();
+    props.onMouseLeave(props.id);
   };
 
   const onClick = () => {
-    props.onClick();
+    props.onClick(props.id);
   };
 
   return (

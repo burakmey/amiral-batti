@@ -1,17 +1,40 @@
 import React from "react";
 import SelectFleet from "./SelectFleet";
 import "./SelectFleet.css";
-import "../../styles.css";
+import { usePlaceShipContext } from "../../context/PlaceShipContext";
 
-function Fleets(props) {
+function Fleets() {
   console.log("SelectFleet rendered!");
+
+  const { selectFleetRef } = usePlaceShipContext();
+
   return (
     <div className="fleets">
-      <SelectFleet shipCount={5} />
-      <SelectFleet shipCount={4} />
-      <SelectFleet shipCount={3} />
-      <SelectFleet shipCount={3} />
-      <SelectFleet shipCount={2} />
+      <SelectFleet
+        ref={(el) => selectFleetRef.current.push(el)}
+        shipCount={5}
+        id={0}
+      />
+      <SelectFleet
+        ref={(el) => selectFleetRef.current.push(el)}
+        shipCount={4}
+        id={1}
+      />
+      <SelectFleet
+        ref={(el) => selectFleetRef.current.push(el)}
+        shipCount={3}
+        id={2}
+      />
+      <SelectFleet
+        ref={(el) => selectFleetRef.current.push(el)}
+        shipCount={3}
+        id={3}
+      />
+      <SelectFleet
+        ref={(el) => selectFleetRef.current.push(el)}
+        shipCount={2}
+        id={4}
+      />
     </div>
   );
 }
