@@ -7,7 +7,7 @@ function Cell(props, ref) {
   console.log("Cell rendered!");
   const [icon, setIcon] = useState(<LuWaves />);
   const [isHit, setIsHit] = useState(false);
-  const [className, setClassName] = useState(props.className);
+  const [className, setClassName] = useState("cell");
   let bool = true;
 
   useImperativeHandle(ref, () => ({
@@ -15,32 +15,41 @@ function Cell(props, ref) {
     setWave: setWave,
     setHit: setHit,
     setUnHit: setUnHit,
+    setAvailable: setAvailable,
+    setUnavailable: setUnavailable,
   }));
 
   const setShip = () => {
     if (bool) {
       setIcon(<RiShipLine />);
-      setClassName(`${props.className} suitable-fleet`);
     }
   };
 
   const setWave = () => {
     if (bool) {
       setIcon(<LuWaves />);
-      setClassName(`${props.className}`);
+      setClassName("cell");
     }
   };
 
   const setHit = () => {
     bool = false;
     setIsHit(true);
-    setClassName(`${props.className} placed-fleet`);
+    setClassName("cell cell-clicked");
   };
 
   const setUnHit = () => {
     bool = true;
     setIsHit(false);
     setWave();
+  };
+
+  const setAvailable = () => {
+    setClassName("cell cell-available");
+  };
+
+  const setUnavailable = () => {
+    setClassName("cell cell-unavailable");
   };
 
   const onMouseEnter = () => {
