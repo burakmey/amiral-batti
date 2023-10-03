@@ -27,7 +27,6 @@ function App() {
       <div>
         {/* {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
         {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null} */}
-        {/* <BoardPlacement /> */}
         <PlaceShipPage />
       </div>
     </div>

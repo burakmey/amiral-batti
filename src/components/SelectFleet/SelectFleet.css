@@ -14,6 +14,17 @@
   padding: 15px;
   flex-direction: column;
 }
+.placed-fleet {
+  background-color: rgb(77, 131, 77);
+  outline: 5px solid green;
+  outline-offset: -5px;
+}
+.active-fleet {
+  outline: 5px solid rgb(13, 102, 129);
+}
+.unavailable-fleet {
+  opacity: 0.5;
+}
 .fleet {
   display: flex;
   font-size: var(--fleet-size);
@@ -28,4 +39,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.placed-ship {
+  background-color: green;
+  border-radius: 5px;
+}
+.unplaced-ship {
+  background-color: red;
+  border-radius: 5px;
 }

@@ -1,4 +1,10 @@
-import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import {
+  forwardRef,
+  memo,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { RiShipLine } from "react-icons/ri";
 import { LuWaves } from "react-icons/lu";
 import "./Board.css";
@@ -17,6 +23,7 @@ function Cell(props, ref) {
     setUnHit: setUnHit,
     setAvailable: setAvailable,
     setUnavailable: setUnavailable,
+    setDefault: setDefault,
   }));
 
   const setShip = () => {
@@ -28,7 +35,6 @@ function Cell(props, ref) {
   const setWave = () => {
     if (bool) {
       setIcon(<LuWaves />);
-      setClassName("cell");
     }
   };
 
@@ -41,7 +47,8 @@ function Cell(props, ref) {
   const setUnHit = () => {
     bool = true;
     setIsHit(false);
-    setWave();
+    setIcon(<LuWaves />);
+    setClassName("cell");
   };
 
   const setAvailable = () => {
@@ -50,6 +57,10 @@ function Cell(props, ref) {
 
   const setUnavailable = () => {
     setClassName("cell cell-unavailable");
+  };
+
+  const setDefault = () => {
+    setClassName("cell");
   };
 
   const onMouseEnter = () => {
