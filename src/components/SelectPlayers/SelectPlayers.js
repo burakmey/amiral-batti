@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useMainContext } from "../../context/MainContext";
 import Player from "./Player";
 import Button from "../Button/Button";

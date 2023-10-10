@@ -1,4 +1,4 @@
-import { useState, memo, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useMainContext } from "../../context/MainContext";
 import Menu from "../Menu/Menu";
 import "./SelectPlayers.css";

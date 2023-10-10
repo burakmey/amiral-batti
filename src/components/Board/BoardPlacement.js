@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import Cell from "./Cell";
 import "./Board.css";
@@ -21,6 +21,10 @@ function BoardPlacement() {
   let allowMouseEnter = true;
   let availableLocations = [];
   let isClickable = false;
+
+  useEffect(() => {
+    return () => console.log("BoardPlacement unmounted!");
+  }, []);
 
   const setAvailableLocations = (cell, array) => {
     let top = cell - MAX_COLUMN < 0 ? -1 : cell - MAX_COLUMN;

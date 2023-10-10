@@ -1,10 +1,14 @@
-import { useState, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import "./Button.css";
 
 function Button(props) {
   console.log(`Button: ${props.name} rendered!`);
 
   const [className, setClassName] = useState(`button ${props.className}`);
+
+  useEffect(() => {
+    return () => console.log(`Button: ${props.name} unmounted!`);
+  }, []);
 
   const updateStyle = (isOnMouse) => {
     setClassName(

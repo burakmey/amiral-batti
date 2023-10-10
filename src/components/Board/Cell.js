@@ -1,6 +1,6 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
-import { RiShipLine } from "react-icons/ri";
+import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import { LuWaves } from "react-icons/lu";
+import { RiShipLine } from "react-icons/ri";
 import "./Board.css";
 
 function Cell(props, ref) {
@@ -9,6 +9,10 @@ function Cell(props, ref) {
   const [isHit, setIsHit] = useState(false);
   const [className, setClassName] = useState("cell");
   let bool = true;
+
+  useEffect(() => {
+    return () => console.log("Cell unmounted!");
+  }, []);
 
   useImperativeHandle(ref, () => ({
     setShip: setShip,

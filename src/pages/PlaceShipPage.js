@@ -9,13 +9,8 @@ import "./Pages.css";
 function PlaceShipPage(props) {
   console.log("PlaceShipPage rendered!");
 
-  const { gamers } = useMainContext();
-  const [currentGamer, setCurrentGamer] = useState(() => {
-    for (let i = 0; i < gamers.current.length; i++) {
-      if (gamers.current[i].isPlayer && !gamers.current[i].isPlacementFinished)
-        return i;
-    }
-  });
+  const { gamers, getCurrentGamer } = useMainContext();
+  const [currentGamer, setCurrentGamer] = useState(getCurrentGamer());
 
   useEffect(() => {
     return () => console.log("PlaceShipPage unmounted!");

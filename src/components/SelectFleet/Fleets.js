@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useMainContext } from "../../context/MainContext";
 import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import SelectFleet from "./SelectFleet";
@@ -8,28 +8,27 @@ import "./SelectFleet.css";
 function Fleets(props) {
   console.log("Fleets rendered!");
 
+  const { gamers, getCurrentGamer } = useMainContext();
   const { selectFleetRef, maxFleetCount, placedFleets } = usePlaceShipContext();
-  const { gamers } = useMainContext();
+
+  useEffect(() => {
+    return () => console.log("Fleets unmounted!");
+  }, []);
 
   const onClick = (buttonName) => {
     switch (buttonName) {
       case "Finish":
         if (placedFleets.length === maxFleetCount) {
-          let isFinished = true;
-          console.log("Placement finised!");
-          for (let i = 0; i < gamers.current.length; i++) {
-            if (
-              gamers.current[i].isPlayer &&
-              !gamers.current[i].isPlacementFinished
-            ) {
-              console.log("New placement for other player");
-              isFinished = false;
-            }
-          }
-          if (isFinished) {
-            props.setPage("MainMenu");
+          let currentGamer = getCurrentGamer();
+          console.log("Placement finised for player :", currentGamer);
+          gamers.current[currentGamer].isPlacementFinished = true;
+          currentGamer = getCurrentGamer();
+          if (currentGamer !== -1) {
+            console.log("New placement for player :", currentGamer);
+            props.setPage("PlayMenu");
           } else {
-            props.setPage("PlaceShipPage");
+            console.log("Completed!");
+            props.setPage("MainMenu");
           }
         }
         break;

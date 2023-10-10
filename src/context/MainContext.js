@@ -7,7 +7,15 @@ export const MainProvider = ({ children }) => {
     { name: "", isPlayer: true, isPlacementFinished: false, id: 0 },
     { name: "", isPlayer: true, isPlacementFinished: false, id: 1 },
   ]);
-  const values = { gamers };
+  const getCurrentGamer = () => {
+    let currentGamer = -1;
+    for (let i = 0; i < gamers.current.length; i++) {
+      if (gamers.current[i].isPlayer && !gamers.current[i].isPlacementFinished)
+        return i;
+    }
+    return currentGamer;
+  };
+  const values = { gamers, getCurrentGamer };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };
 

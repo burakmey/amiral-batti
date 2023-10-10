@@ -1,4 +1,10 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
+import {
+  useState,
+  useEffect,
+  useImperativeHandle,
+  useCallback,
+  forwardRef,
+} from "react";
 import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import { RiShipLine } from "react-icons/ri";
 import Button from "../Button/Button";
@@ -14,6 +20,7 @@ function SelectFleet(props, ref) {
   const [buildSize, setBuildSize] = useState(0);
   const [buttonType, setButtonType] = useState(0);
   const [className, setClassName] = useState("select-fleet");
+  let unavailableCurrent = [];
   const {
     cellRefs,
     placedFleets,
@@ -21,7 +28,10 @@ function SelectFleet(props, ref) {
     unavailableLocations,
     selectFleetRef,
   } = usePlaceShipContext();
-  let unavailableCurrent = [];
+
+  useEffect(() => {
+    return () => console.log("SelectFleet unmounted!");
+  }, []);
 
   useImperativeHandle(ref, () => ({
     buildCompleted: buildCompleted,
