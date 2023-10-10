@@ -1,6 +1,6 @@
-import { useMemo, useRef } from "react";
-import Cell from "./Cell";
+import React from "react";
 import { usePlaceShipContext } from "../../context/PlaceShipContext";
+import Cell from "./Cell";
 import "./Board.css";
 
 const MAX_ROW = 10;
@@ -22,7 +22,7 @@ function BoardPlacement() {
   let availableLocations = [];
   let isClickable = false;
 
-  const setAvailableLocations = (cell, array, isClearCurrent) => {
+  const setAvailableLocations = (cell, array) => {
     let top = cell - MAX_COLUMN < 0 ? -1 : cell - MAX_COLUMN;
     let bottom =
       cell + MAX_COLUMN > MAX_COLUMN * MAX_ROW ? -1 : cell + MAX_COLUMN;
@@ -52,14 +52,14 @@ function BoardPlacement() {
       return;
     }
     let locations = [];
-    setAvailableLocations(currentCellKey, locations, false);
+    setAvailableLocations(currentCellKey, locations);
     if (locations.length >= currentFleet.shipCount) {
       isClickable = true;
       //console.log(locations, 1);
       return;
     } else {
       for (let i = 0; i < locations.length; i++) {
-        setAvailableLocations(locations[i], locations, false);
+        setAvailableLocations(locations[i], locations);
         if (locations.length >= currentFleet.shipCount) {
           isClickable = true;
           //console.log(locations, 2);
@@ -74,7 +74,7 @@ function BoardPlacement() {
   const onClick = (cellKey) => {
     if (currentFleet.id !== -1) {
       if (isClickable) {
-        setAvailableLocations(currentCellKey, availableLocations, true);
+        setAvailableLocations(currentCellKey, availableLocations);
         const index = availableLocations.indexOf(currentCellKey);
         if (index !== -1) availableLocations.splice(index, 1);
         cellRefs.current[currentCellKey].setHit();

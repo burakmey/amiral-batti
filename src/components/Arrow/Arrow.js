@@ -1,6 +1,5 @@
 import { useState, memo } from "react";
 import "./Arrow.css";
-import "../../styles.css";
 
 function Arrow(props) {
   console.log("Arrow rendered!");

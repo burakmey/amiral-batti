@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from "react";
+import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { usePlaceShipContext } from "../../context/PlaceShipContext";
 import { RiShipLine } from "react-icons/ri";
 import Button from "../Button/Button";

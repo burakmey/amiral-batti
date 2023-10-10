@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  memo,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { RiShipLine } from "react-icons/ri";
 import { LuWaves } from "react-icons/lu";
 import "./Board.css";

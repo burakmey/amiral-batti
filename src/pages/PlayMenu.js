@@ -3,7 +3,7 @@ import Title from "../components/Title/Title";
 import Menu from "../components/Menu/Menu";
 import SelectPlayers from "../components/SelectPlayers/SelectPlayers";
 import Button from "../components/Button/Button";
-import "../styles.css";
+import "./Pages.css";
 
 function PlayMenu(props) {
   console.log("PlayMenu rendered!");

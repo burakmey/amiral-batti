@@ -1,8 +1,9 @@
-import { createContext, useRef, useContext } from "react";
+import { createContext, useContext, useRef } from "react";
 
 const PlaceShipContext = createContext();
 
 export const PlaceShipProvider = ({ children }) => {
+  const maxFleetCount = 5;
   const cellRefs = useRef([]);
   const selectFleetRef = useRef([]);
   let currentFleet = { location: [], shipCount: -1, id: -1 };
@@ -10,6 +11,7 @@ export const PlaceShipProvider = ({ children }) => {
   let unavailableLocations = [];
 
   const values = {
+    maxFleetCount,
     cellRefs,
     selectFleetRef,
     placedFleets,

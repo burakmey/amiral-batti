@@ -1,17 +1,17 @@
-import { useState, useRef, memo, useEffect } from "react";
+import { useState, memo, useEffect } from "react";
+import { useMainContext } from "../../context/MainContext";
 import Menu from "../Menu/Menu";
 import "./SelectPlayers.css";
-import "../../styles.css";
 
 const labelName = ["Player", "Computer"];
 
 function Player(props) {
   console.log("Player rendered!");
 
-  const inputRef = useRef("");
   const [inputClassName, setInputClassName] = useState("name-input");
   const [nameClassName, setnameClassName] = useState("player-name");
   const [isPlayer, setIsPlayer] = useState(true);
+  const { gamers } = useMainContext();
 
   useEffect(() => {
     return () => console.log("Player unmounted!");
@@ -19,14 +19,16 @@ function Player(props) {
 
   const arrowUpClick = () => {
     setIsPlayer(false);
+    gamers.current[props.id].isPlayer = false;
   };
 
   const arrowDownClick = () => {
     setIsPlayer(true);
+    gamers.current[props.id].isPlayer = true;
   };
 
   const updateStyle = (onFocus) => {
-    if (onFocus || inputRef.current.length !== 0) {
+    if (onFocus || gamers.current[props.id].name.length !== 0) {
       setInputClassName("name-input name-input-animated");
       setnameClassName("player-name player-name-animated");
     } else {
@@ -36,9 +38,9 @@ function Player(props) {
   };
 
   const getInput = (event) => {
-    inputRef.current = event.target.value;
-    // console.log(inputRef);
+    gamers.current[props.id].name = event.target.value;
   };
+
   return (
     <div className="player">
       <Menu

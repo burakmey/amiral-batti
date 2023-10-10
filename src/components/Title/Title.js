@@ -1,6 +1,5 @@
 import { memo } from "react";
 import "./Title.css";
-import "../../styles.css";
 
 function Title() {
   console.log("Title rendered!");

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Title from "../components/Title/Title";
 import Menu from "../components/Menu/Menu";
 import Button from "../components/Button/Button";
-import "../styles.css";
+import "./Pages.css";
 
 function MainMenu(props) {
   useEffect(() => {

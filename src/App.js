@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { MainProvider } from "./context/MainContext";
 import MainMenu from "./pages/MainMenu";
 import PlayMenu from "./pages/PlayMenu";
-import BoardPlacement from "./components/Board/BoardPlacement";
-import "./App.css";
 import PlaceShipPage from "./pages/PlaceShipPage";
+import "./App.css";
 
 function App() {
   console.log("App rendered!");
@@ -18,18 +18,29 @@ function App() {
       case "PlayMenu":
         setActivePage(pageName);
         break;
+      case "PlaceShipPage":
+        setActivePage(pageName);
+        break;
+      case "GamePage":
+        //setActivePage(pageName);
+        console.log(pageName);
+        break;
       default:
         break;
     }
   };
   return (
-    <div className="App">
-      <div>
-        {/* {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
-        {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null} */}
-        <PlaceShipPage />
+    <MainProvider>
+      <div className="App">
+        <div>
+          {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
+          {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
+          {activePage === "PlaceShipPage" ? (
+            <PlaceShipPage setPage={setPage} />
+          ) : null}
+        </div>
       </div>
-    </div>
+    </MainProvider>
   );
 }
 
