@@ -9,13 +9,8 @@ const MAX_COLUMN = 10;
 function BoardPlacement() {
   console.log("BoardPlacement rendered!");
 
-  const {
-    cellRefs,
-    selectFleetRef,
-    placedFleets,
-    currentFleet,
-    unavailableLocations,
-  } = usePlaceShipContext();
+  const { cellRefs, selectFleetRef, currentFleet, unavailableLocations } =
+    usePlaceShipContext();
 
   let currentCellKey = -1;
   let allowMouseEnter = true;

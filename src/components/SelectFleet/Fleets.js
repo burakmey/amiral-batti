@@ -8,7 +8,7 @@ import "./SelectFleet.css";
 function Fleets(props) {
   console.log("Fleets rendered!");
 
-  const { gamers, getCurrentGamer } = useMainContext();
+  const { gamers, board0, board1, getCurrentGamer } = useMainContext();
   const { selectFleetRef, maxFleetCount, placedFleets } = usePlaceShipContext();
 
   useEffect(() => {
@@ -22,14 +22,25 @@ function Fleets(props) {
           let currentGamer = getCurrentGamer();
           console.log("Placement finised for player :", currentGamer);
           gamers.current[currentGamer].isPlacementFinished = true;
+          if (currentGamer === 0) {
+            placedFleets.forEach((object) => {
+              board0.push(object.location);
+            });
+          } else if (currentGamer === 1) {
+            placedFleets.forEach((object) => {
+              board1.push(object.location);
+            });
+          }
           currentGamer = getCurrentGamer();
           if (currentGamer !== -1) {
             console.log("New placement for player :", currentGamer);
-            props.setPage("PlayMenu");
+            props.setPage("ContinuePage");
           } else {
             console.log("Completed!");
             props.setPage("MainMenu");
           }
+          console.log(board0);
+          console.log(board1);
         }
         break;
       default:

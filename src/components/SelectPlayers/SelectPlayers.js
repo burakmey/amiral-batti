@@ -10,7 +10,7 @@ function SelectPlayers(props) {
 
   const [buttonName, setButtonName] = useState("Set Players");
   const [buttonClassName, setButtonClassName] = useState("main-button");
-  const { gamers } = useMainContext();
+  const { getCurrentGamer } = useMainContext();
 
   useEffect(() => {
     return () => console.log("SelectPlayers unmounted!");
@@ -23,17 +23,14 @@ function SelectPlayers(props) {
         setButtonName(subButtonName);
         break;
       case "Start":
-        for (let i = 0; i < gamers.current.length; i++) {
-          if (
-            gamers.current[i].isPlayer &&
-            !gamers.current[i].isPlacementFinished
-          ) {
-            props.setPage("PlaceShipPage");
-            return;
-          }
+        let currentGamer = getCurrentGamer();
+        if (currentGamer !== -1) {
+          console.log("New placement for player :", currentGamer);
+          props.setPage("ContinuePage");
+        } else {
+          console.log("2 computer!");
+          props.setPage("MainMenu");
         }
-        console.log("2 computer");
-        props.setPage("MainMenu");
         break;
       default:
         break;

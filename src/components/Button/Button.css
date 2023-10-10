@@ -6,6 +6,8 @@
 .button {
   display: flex;
   align-self: center;
+  width: fit-content;
+  height: fit-content;
   cursor: pointer;
   transition: 0.5s;
 }

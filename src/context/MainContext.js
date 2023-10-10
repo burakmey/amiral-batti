@@ -7,6 +7,8 @@ export const MainProvider = ({ children }) => {
     { name: "", isPlayer: true, isPlacementFinished: false, id: 0 },
     { name: "", isPlayer: true, isPlacementFinished: false, id: 1 },
   ]);
+  let board0 = [];
+  let board1 = [];
   const getCurrentGamer = () => {
     let currentGamer = -1;
     for (let i = 0; i < gamers.current.length; i++) {
@@ -15,7 +17,7 @@ export const MainProvider = ({ children }) => {
     }
     return currentGamer;
   };
-  const values = { gamers, getCurrentGamer };
+  const values = { gamers, board0, board1, getCurrentGamer };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };
 

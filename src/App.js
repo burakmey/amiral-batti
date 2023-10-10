@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MainProvider } from "./context/MainContext";
 import MainMenu from "./pages/MainMenu";
 import PlayMenu from "./pages/PlayMenu";
+import ContinuePage from "./pages/ContinuePage";
 import PlaceShipPage from "./pages/PlaceShipPage";
 import "./App.css";
 
@@ -16,6 +17,9 @@ function App() {
         setActivePage(pageName);
         break;
       case "PlayMenu":
+        setActivePage(pageName);
+        break;
+      case "ContinuePage":
         setActivePage(pageName);
         break;
       case "PlaceShipPage":
@@ -35,6 +39,9 @@ function App() {
         <div>
           {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
           {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
+          {activePage === "ContinuePage" ? (
+            <ContinuePage setPage={setPage} />
+          ) : null}
           {activePage === "PlaceShipPage" ? (
             <PlaceShipPage setPage={setPage} />
           ) : null}

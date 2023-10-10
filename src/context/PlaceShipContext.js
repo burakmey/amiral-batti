@@ -14,10 +14,11 @@ export const PlaceShipProvider = ({ children }) => {
     maxFleetCount,
     cellRefs,
     selectFleetRef,
-    placedFleets,
     currentFleet,
+    placedFleets,
     unavailableLocations,
   };
+
   return (
     <PlaceShipContext.Provider value={values}>
       {children}
