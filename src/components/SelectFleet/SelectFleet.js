@@ -88,7 +88,7 @@ function SelectFleet(props, ref) {
 
   const addToUnavailableLocations = (cellKey) => {
     let iStart = cellKey - MAX_COLUMN < 0 ? 0 : -1;
-    let iStop = cellKey + MAX_COLUMN > MAX_COLUMN * MAX_ROW ? 0 : 1;
+    let iStop = cellKey + MAX_COLUMN > MAX_COLUMN * MAX_ROW - 1 ? 0 : 1;
     let jStart = (cellKey % MAX_COLUMN) - 1 < 0 ? 0 : -1;
     let jStop = (cellKey % MAX_COLUMN) + 1 < MAX_COLUMN ? 1 : 0;
 

@@ -37,7 +37,7 @@ function Fleets(props) {
             props.setPage("ContinuePage");
           } else {
             console.log("Completed!");
-            props.setPage("MainMenu");
+            props.setPage("GamePage");
           }
           console.log(board0);
           console.log(board1);

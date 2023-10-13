@@ -4,12 +4,13 @@ import MainMenu from "./pages/MainMenu";
 import PlayMenu from "./pages/PlayMenu";
 import ContinuePage from "./pages/ContinuePage";
 import PlaceShipPage from "./pages/PlaceShipPage";
+import TestBoardPlacement from "./test/components/TestBoardPlacement";
 import "./App.css";
 
 function App() {
   console.log("App rendered!");
 
-  const [activePage, setActivePage] = useState("MainMenu");
+  const [activePage, setActivePage] = useState("TestBoardPlacement");
 
   const setPage = (pageName) => {
     switch (pageName) {
@@ -37,6 +38,7 @@ function App() {
     <MainProvider>
       <div className="App">
         <div>
+          {activePage === "TestBoardPlacement" ? <TestBoardPlacement /> : null}
           {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
           {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
           {activePage === "ContinuePage" ? (

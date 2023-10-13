@@ -24,7 +24,7 @@ function BoardPlacement() {
   const setAvailableLocations = (cell, array) => {
     let top = cell - MAX_COLUMN < 0 ? -1 : cell - MAX_COLUMN;
     let bottom =
-      cell + MAX_COLUMN > MAX_COLUMN * MAX_ROW ? -1 : cell + MAX_COLUMN;
+      cell + MAX_COLUMN > MAX_COLUMN * MAX_ROW - 1 ? -1 : cell + MAX_COLUMN;
     let left = (cell % MAX_COLUMN) - 1 < 0 ? -1 : cell - 1;
     let right = (cell % MAX_COLUMN) + 1 < MAX_COLUMN ? cell + 1 : -1;
     const locations = [top, right, bottom, left];

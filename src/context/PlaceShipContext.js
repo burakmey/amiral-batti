@@ -1,9 +1,11 @@
 import { createContext, useContext, useRef } from "react";
 
+const FLEETS = [5, 4, 3, 3, 2];
+
 const PlaceShipContext = createContext();
 
 export const PlaceShipProvider = ({ children }) => {
-  const maxFleetCount = 5;
+  const maxFleetCount = FLEETS.length;
   const cellRefs = useRef([]);
   const selectFleetRef = useRef([]);
   let currentFleet = { location: [], shipCount: -1, id: -1 };
