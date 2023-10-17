@@ -3,12 +3,12 @@ import { createContext, useContext, useRef } from "react";
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  const cellRefs0 = useRef([]);
-  const cellRefs1 = useRef([]);
+  const cellRefs = useRef([[], []]);
+  let turn = 0;
 
-  const values = {
-    cellRefs0,
-    cellRefs1,
+  let values = {
+    cellRefs,
+    turn,
   };
 
   return <GameContext.Provider value={values}>{children}</GameContext.Provider>;

@@ -1,6 +1,7 @@
 import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import { LuWaves } from "react-icons/lu";
 import { RiShipLine } from "react-icons/ri";
+import { ImTarget } from "react-icons/im";
 import "./Board.css";
 
 function Cell(props, ref) {
@@ -17,6 +18,7 @@ function Cell(props, ref) {
   useImperativeHandle(ref, () => ({
     setShip: setShip,
     setWave: setWave,
+    setTarget: setTarget,
     setHit: setHit,
     setUnHit: setUnHit,
     setAvailable: setAvailable,
@@ -33,6 +35,12 @@ function Cell(props, ref) {
   const setWave = () => {
     if (bool) {
       setIcon(<LuWaves />);
+    }
+  };
+
+  const setTarget = () => {
+    if (bool) {
+      setIcon(<ImTarget />);
     }
   };
 
