@@ -8,7 +8,8 @@ import "./SelectFleet.css";
 function Fleets(props) {
   console.log("Fleets rendered!");
 
-  const { gamers, board0, board1, getCurrentGamer } = useMainContext();
+  const { gamers, getCurrentGamer, updateBoard, createComputerBoard } =
+    useMainContext();
   const { selectFleetRef, maxFleetCount, placedFleets } = usePlaceShipContext();
 
   useEffect(() => {
@@ -22,15 +23,7 @@ function Fleets(props) {
           let currentGamer = getCurrentGamer();
           console.log("Placement finised for player :", currentGamer);
           gamers.current[currentGamer].isPlacementFinished = true;
-          if (currentGamer === 0) {
-            placedFleets.forEach((object) => {
-              board0.push(object.location);
-            });
-          } else if (currentGamer === 1) {
-            placedFleets.forEach((object) => {
-              board1.push(object.location);
-            });
-          }
+          updateBoard(placedFleets.location, currentGamer);
           currentGamer = getCurrentGamer();
           if (currentGamer !== -1) {
             console.log("New placement for player :", currentGamer);
@@ -38,9 +31,9 @@ function Fleets(props) {
           } else {
             console.log("Completed!");
             props.setPage("GamePage");
+            if (!gamers.current[0].isPlayer) createComputerBoard(0);
+            if (!gamers.current[1].isPlayer) createComputerBoard(1);
           }
-          console.log(board0);
-          console.log(board1);
         }
         break;
       default:

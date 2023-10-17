@@ -10,7 +10,7 @@ function Player(props) {
 
   const [inputClassName, setInputClassName] = useState("name-input");
   const [nameClassName, setnameClassName] = useState("player-name");
-  const [isPlayer, setIsPlayer] = useState(true);
+  const [isPlayer, setIsPlayer] = useState(false);
   const { gamers } = useMainContext();
 
   useEffect(() => {

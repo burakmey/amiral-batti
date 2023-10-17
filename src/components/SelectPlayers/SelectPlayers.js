@@ -10,7 +10,7 @@ function SelectPlayers(props) {
 
   const [buttonName, setButtonName] = useState("Set Players");
   const [buttonClassName, setButtonClassName] = useState("main-button");
-  const { getCurrentGamer } = useMainContext();
+  const { getCurrentGamer, createComputerBoard } = useMainContext();
 
   useEffect(() => {
     return () => console.log("SelectPlayers unmounted!");
@@ -29,7 +29,9 @@ function SelectPlayers(props) {
           props.setPage("ContinuePage");
         } else {
           console.log("2 computer!");
-          props.setPage("MainMenu");
+          props.setPage("GamePage");
+          createComputerBoard(0);
+          createComputerBoard(1);
         }
         break;
       default:

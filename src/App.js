@@ -4,13 +4,14 @@ import MainMenu from "./pages/MainMenu";
 import PlayMenu from "./pages/PlayMenu";
 import ContinuePage from "./pages/ContinuePage";
 import PlaceShipPage from "./pages/PlaceShipPage";
-import TestBoardPlacement from "./test/components/TestBoardPlacement";
+import GamePage from "./pages/GamePage";
+//import TestBoardPlacement from "./test/components/TestBoardPlacement";
 import "./App.css";
 
 function App() {
   console.log("App rendered!");
 
-  const [activePage, setActivePage] = useState("TestBoardPlacement");
+  const [activePage, setActivePage] = useState("MainMenu");
 
   const setPage = (pageName) => {
     switch (pageName) {
@@ -27,8 +28,7 @@ function App() {
         setActivePage(pageName);
         break;
       case "GamePage":
-        //setActivePage(pageName);
-        console.log(pageName);
+        setActivePage(pageName);
         break;
       default:
         break;
@@ -37,17 +37,15 @@ function App() {
   return (
     <MainProvider>
       <div className="App">
-        <div>
-          {activePage === "TestBoardPlacement" ? <TestBoardPlacement /> : null}
-          {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
-          {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
-          {activePage === "ContinuePage" ? (
-            <ContinuePage setPage={setPage} />
-          ) : null}
-          {activePage === "PlaceShipPage" ? (
-            <PlaceShipPage setPage={setPage} />
-          ) : null}
-        </div>
+        {activePage === "MainMenu" ? <MainMenu setPage={setPage} /> : null}
+        {activePage === "PlayMenu" ? <PlayMenu setPage={setPage} /> : null}
+        {activePage === "ContinuePage" ? (
+          <ContinuePage setPage={setPage} />
+        ) : null}
+        {activePage === "PlaceShipPage" ? (
+          <PlaceShipPage setPage={setPage} />
+        ) : null}
+        {activePage === "GamePage" ? <GamePage setPage={setPage} /> : null}
       </div>
     </MainProvider>
   );
