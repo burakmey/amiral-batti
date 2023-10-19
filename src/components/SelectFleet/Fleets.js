@@ -23,7 +23,9 @@ function Fleets(props) {
           let currentGamer = getCurrentGamer();
           console.log("Placement finised for player :", currentGamer);
           gamers.current[currentGamer].isPlacementFinished = true;
-          updateBoard(placedFleets.location, currentGamer);
+          placedFleets.forEach((object) => {
+            updateBoard(object.location, currentGamer);
+          });
           currentGamer = getCurrentGamer();
           if (currentGamer !== -1) {
             console.log("New placement for player :", currentGamer);

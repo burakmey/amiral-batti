@@ -7,7 +7,7 @@ import "./Board.css";
 function Cell(props, ref) {
   console.log("Cell rendered!");
   const [icon, setIcon] = useState(<LuWaves />);
-  const [isHit, setIsHit] = useState(false);
+  const [isHit, setIsHit] = useState(props.isHit === undefined ? false : true);
   const [className, setClassName] = useState("cell");
   let bool = true;
 

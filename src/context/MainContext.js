@@ -22,19 +22,19 @@ export const MainProvider = ({ children }) => {
     return currentGamer;
   };
 
-  const updateBoard = (location, index) => {
-    console.log(location);
-    location.forEach((array) => {
-      array.forEach((element) => {
-        boards.current[index].push(element);
-      });
+  const updateBoard = (array, index) => {
+    console.log(array, `current gamer : ${index}`);
+    array.forEach((element) => {
+      boards.current[index].push(element);
     });
   };
 
   const createComputerBoard = (index) => {
     const cp = new ComputerPlacement();
-    for (let i = 0; i < FLEETS.length; i++) cp.placeShip();
-    updateBoard(cp.placedFleets, index);
+    for (let i = 0; i < FLEETS.length; i++) {
+      cp.placeShip();
+      updateBoard(cp.placedFleets[i], index);
+    }
   };
 
   const values = {
