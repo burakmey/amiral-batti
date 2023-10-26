@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useMainContext } from "../../context/MainContext";
 import { useGameContext } from "../../context/GameContext";
-import ComputerShooting from "../../AI/ComputerShooting";
 import MainVariables from "../../context/MainVariables";
 import Cell from "./Cell";
 import "./Board.css";
@@ -14,10 +13,10 @@ function BoardTargeting(props) {
   console.log("BoardTargeting rendered!");
 
   const { gamers, boards } = useMainContext();
-  const { cellRefs, getTurn, updateTurn } = useGameContext();
+  const { cellRefs, getTurn, updateTurn, createComputerShooting } =
+    useGameContext();
   let maxShipCount = 0;
   FLEETS.forEach((element) => (maxShipCount += element));
-  const computerShooting = useRef();
   let turn = -1;
   let currentCellKey = -1;
   let allowMouseEnter = true;
@@ -26,8 +25,8 @@ function BoardTargeting(props) {
 
   useEffect(() => {
     if (!gamers.current[props.id].isPlayer) {
-      computerShooting.current = new ComputerShooting();
-      if (props.id === 0) updateTurn();
+      const opponent = props.id === 0 ? 1 : 0;
+      createComputerShooting(opponent);
     }
     return () =>
       console.log("BoardTargeting unmounted!", "???????????????????????");

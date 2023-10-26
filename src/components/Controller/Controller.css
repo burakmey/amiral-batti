@@ -1,0 +1,10 @@
+.controller {
+  display: flex;
+  width: fit-content;
+  outline: 5px solid green;
+  outline-offset: -5px;
+  margin: 20px auto;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 50px;
+}
